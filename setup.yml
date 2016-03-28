@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  become: root
+  roles:
+  vars:
+  tasks:
+    - debug: var=hostvars[inventory_hostname]
