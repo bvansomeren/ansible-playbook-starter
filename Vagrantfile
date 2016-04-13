@@ -7,29 +7,24 @@ Vagrant.configure("2") do |config|
  
   config.vm.define 'centos7' do |instance|
     instance.vm.box = 'geerlingguy/centos7'
-    config.vm.network :private_network, ip: "192.168.205.10"
   end
 
-#  config.vm.define 'centos6', autostart: false do |instance|
-#    instance.vm.box = 'geerlingguy/centos6'
-#    config.vm.network :private_network, ip: "192.168.205.11"
-#  end
+  config.vm.define 'centos6', autostart: false do |instance|
+    instance.vm.box = 'geerlingguy/centos6'
+  end
 
-#  config.vm.define 'ubuntu1204', autostart: false do |instance|
-#    instance.vm.box = 'geerlingguy/ubuntu1204'
-#    config.vm.network :private_network, ip: "192.168.205.12"
-#  end
+  config.vm.define 'ubuntu1204', autostart: false do |instance|
+    instance.vm.box = 'geerlingguy/ubuntu1204'
+  end
 
-#  config.vm.define 'ubuntu1404' do |instance|
-#    instance.vm.box = 'geerlingguy/ubuntu1404'
-#    config.vm.network :private_network, ip: "192.168.205.13"
-#  end
+  config.vm.define 'ubuntu1404' do |instance|
+    instance.vm.box = 'geerlingguy/ubuntu1404'
+  end
 
-  config.vm.define 'freebsd102' do |instance|
-    instance.vm.box = 'freebsd/FreeBSD-10.2-RELEASE'
+  config.vm.define 'freebsd103' do |instance|
+    instance.vm.box = 'freebsd/FreeBSD-10.3-RELEASE'
     config.vm.base_mac = "080027D14C66"
     config.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
-    config.vm.network :private_network, ip: "192.168.205.14"
     config.ssh.shell = "sh"
     # FreeBSD can be slow out of the gate because of the forced updates
     config.vm.boot_timeout = 600 
@@ -45,7 +40,7 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "setup.yml"
     #ansible.verbose = 'v'
     ansible.groups = {
-	"freebsd" => ["freebsd102"],
+	"freebsd" => ["freebsd103"],
 	"ubuntu" => ["ubuntu1204","ubuntu1404"],
 	"centos" => ["centos7","centos6"]
     }
