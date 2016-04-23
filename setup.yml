@@ -1,7 +1,8 @@
 ---
 
 - hosts: all
-  become: root
+  become: yes
+  become_user: root
   roles:
   vars:
   tasks:
